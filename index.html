@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Aim Trainer</title>
+  <title>FPS Aim Trainer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Aim Trainer</h1>
-    <div id="gameArea"></div>
-    <div class="stats">
-      <span>Score: <span id="score">0</span></span>
-      <span>Time: <span id="time">30</span>s</span>
-    </div>
-    <button id="startBtn">Start Game</button>
+  <div id="hud">
+    <span>Score: <span id="score">0</span></span>
+    <span>Time: <span id="time">30</span>s</span>
+  </div>
+  <button id="startBtn">Start Game</button>
+  <div id="gameArea">
+    <div id="crosshair">+</div>
   </div>
   <script src="script.js"></script>
 </body>
