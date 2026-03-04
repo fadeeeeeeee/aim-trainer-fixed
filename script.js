@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let score = 0;
   let time = 30;
   let countdown;
+  let targets = [];
+  const maxTargets = 5;
 
   function startGame() {
     score = 0;
@@ -14,9 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreDisplay.textContent = score;
     timeDisplay.textContent = time;
     startBtn.disabled = true;
-    gameArea.innerHTML = "";
 
-    spawnTarget();
+    // clear previous targets
+    targets.forEach(t => t.remove());
+    targets = [];
+
+    for (let i = 0; i < maxTargets; i++) spawnTarget();
 
     countdown = setInterval(() => {
       time--;
@@ -27,7 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function endGame() {
     clearInterval(countdown);
-    gameArea.innerHTML = "";
+    targets.forEach(t => t.remove());
+    targets = [];
     startBtn.disabled = false;
     alert(`Game Over! Your score: ${score}`);
   }
@@ -36,20 +42,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = document.createElement("div");
     target.classList.add("target");
 
-    const maxX = gameArea.clientWidth - 40;
-    const maxY = gameArea.clientHeight - 40;
-
-    target.style.left = Math.random() * maxX + "px";
-    target.style.top = Math.random() * maxY + "px";
+    // random position on screen
+    target.style.left = Math.random() * (window.innerWidth - 50) + "px";
+    target.style.top = Math.random() * (window.innerHeight - 50) + "px";
 
     target.addEventListener("click", () => {
       score++;
       scoreDisplay.textContent = score;
       target.remove();
-      spawnTarget();
+      targets = targets.filter(t => t !== target);
+      spawnTarget(); // replace target
     });
 
     gameArea.appendChild(target);
+    targets.push(target);
   }
 
   startBtn.addEventListener("click", startGame);
