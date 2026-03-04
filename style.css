@@ -1,46 +1,56 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  overflow: hidden;
+  font-family: Arial;
   background: #111;
   color: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
-.container {
-  text-align: center;
+#hud {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 10;
 }
 
 #gameArea {
+  width: 100vw;
+  height: 100vh;
   position: relative;
-  width: 600px;
-  height: 400px;
-  background: #222;
-  margin: 20px auto;
-  border: 2px solid #555;
   overflow: hidden;
+  background: linear-gradient(#333, #111);
 }
 
 .target {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background: red;
-  border-radius: 50%;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.stats {
-  margin: 10px 0;
-  font-size: 18px;
-  display: flex;
-  justify-content: space-around;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+#crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 40px;
+  color: white;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
