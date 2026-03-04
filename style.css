@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+#gameArea {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  background: #222;
+  margin: 20px auto;
+  border: 2px solid #555;
+  overflow: hidden;
+}
+
+.target {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: red;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.stats {
+  margin: 10px 0;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
