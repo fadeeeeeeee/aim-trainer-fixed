@@ -108,12 +108,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Shooting
-  document.addEventListener("click", () => {
-    if (document.pointerLockElement === gameArea && !startBtn.disabled) {
-      shootSound.play();
-    }
-  });
+// Shooting
+document.addEventListener("click", () => {
+  if (document.pointerLockElement === gameArea && !startBtn.disabled) {
+    shootSound.play();
 
-  startBtn.addEventListener("click", startGame);
+    // Check if any target is under the crosshair
+    targets.forEach(t => {
+      const rect = t.getBoundingClientRect();
+      if (
+        pointerX >= rect.left &&
+        pointerX <= rect.right &&
+        pointerY >= rect.top &&
+        pointerY <= rect.bottom
+      ) {
+        // Hit target
+        score++;
+        scoreDisplay.textContent = score;
+        t.remove();
+        targets = targets.filter(obj => obj !== t);
+        hitSound.play();
+        spawnTarget();
+      }
+    });
+  }
 });
